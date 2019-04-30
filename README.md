@@ -16,6 +16,7 @@
     <img src="https://badges.frapsoft.com/os/mit/mit.svg?v=102" alt="Open Source Love">
   </a>
 </p>
+
 <div align="center">
   <img src="https://fullstackdeeplearning.com/assets/fsdl_lab_intro.jpg__vUzdzk%2FAxRhOPagFTz0ERFg47c719249c4807cf95e3e0fb7e014154" width="80%">
   <p>High level architecture of the Full Stack Deep Learning project. Image Source: Pieter Abbeel, Sergey Karayev, Josh Tobin. <a href="https://fullstackdeeplearning.com/march2019">Spring 2019 Full Stack Deep Learning Bootcamp</a></p>
@@ -86,9 +87,7 @@ tasks/
     update_fsdl_paragraphs_metadata.sh
 ```
 
-
 Main model
-
 
 ```
 text_recognizer/                        # Package that can be deployed as a self-contained prediction system
@@ -165,7 +164,6 @@ training/                               # Code for running training experiments 
 ```
 
 
-
 ## Set up
 
 Run
@@ -191,12 +189,9 @@ to make sure your package versions are correct.
 
 ## Dataset
 
-
-
 ### EMNIST dataset
 
 > The EMNIST dataset is a set of handwritten character digits derived from the [NIST Special Database 19](https://www.nist.gov/srd/nist-special-database-19)  and converted to a 28x28 pixel image format and dataset structure that directly matches the [MNIST dataset](http://yann.lecun.com/exdb/mnist/) . Further information on the dataset contents and conversion process can be found in the paper available at https://arxiv.org/abs/1702.05373v1.
-
 
 
 <div align="center">
@@ -209,11 +204,9 @@ to make sure your package versions are correct.
 </div><br>
 
 
-
 ### EMNIST Lines dataset
 
 > This is a synthetic dataset built for this project. It contains the sample sentences from Brown corpus. For each character, sample random EMNIST character and place on a line (with some random overlap).
-
 
 
 <div align="center">
@@ -253,7 +246,7 @@ to make sure your package versions are correct.
 You can run the shortcut command `tasks/train_character_predictor.sh`, which runs the following:
 
 ```
-pipenv run training/run_experiment.py --save '{"dataset": "EmnistDataset", "model": "CharacterModel", "network": "mlp",  "train_args": {"batch_size": 256}}'
+pipenv run python training/run_experiment.py --save '{"dataset": "EmnistDataset", "model": "CharacterModel", "network": "mlp",  "train_args": {"batch_size": 256}}'
 ```
 
 It will take a couple of minutes to train your model.
@@ -261,13 +254,13 @@ It will take a couple of minutes to train your model.
 Just for fun, you could also try a larger MLP, with a smaller batch size:
 
 ```
-pipenv run training/run_experiment.py '{"dataset": "EmnistDataset", "model": "CharacterModel", "network": "mlp", "network_args": {"num_layers": 8}, "train_args": {"batch_size": 128}}'
+pipenv run python training/run_experiment.py '{"dataset": "EmnistDataset", "model": "CharacterModel", "network": "mlp", "network_args": {"num_layers": 8}, "train_args": {"batch_size": 128}}'
 ```
 
 Let's also train a CNN on the same task.
 
 ```
-pipenv run training/run_experiment.py '{"dataset": "EmnistDataset", "model": "CharacterModel", "network": "lenet", "train_args": {"epochs": 1}}'
+pipenv run python training/run_experiment.py '{"dataset": "EmnistDataset", "model": "CharacterModel", "network": "lenet", "train_args": {"epochs": 1}}'
 ```
 
 Training the single epoch will take about 2 minutes (that's why we only do one epoch in this lab :)). Leave it running while we go on to the next part.
@@ -275,7 +268,7 @@ Training the single epoch will take about 2 minutes (that's why we only do one e
 It is very useful to be able to subsample the dataset for quick experiments. This is possibe by passing `subsample_fraction=0.1` (or some other fraction) at dataset initialization, or in `dataset_args` in the `run_experiment.py`dictionary, for example:
 
 ```
-pipenv run training/run_experiment.py '{"dataset": "EmnistDataset", "dataset_args": {"subsample_fraction": 0.1}, "model": "CharacterModel", "network": "mlp"}'
+pipenv run python training/run_experiment.py '{"dataset": "EmnistDataset", "dataset_args": {"subsample_fraction": 0.1}, "model": "CharacterModel", "network": "mlp"}'
 ```
 
 #### Testing
@@ -296,6 +289,7 @@ Or, use the shorthand `tasks/run_prediction_tests.sh`
 
 Testing should finish quickly.
 
+
 ### EMNIST Lines dataset
 
 #### Train LSTM model with CTC loss
@@ -307,6 +301,7 @@ pipenv run python training/run_experiment.py --save '{"train_args": {"epochs": 1
 ```
 
 or the shortcut `tasks/train_lstm_line_predictor.sh`
+
 
 ### IAM Lines Dataset
 
@@ -321,7 +316,6 @@ pipenv run python training/run_experiment.py --save '{"dataset": "IamLinesDatase
 This uses our LSTM with CTC model. 8 epochs gets accuracy of 40% and takes about 10 minutes.
 
 Training longer will keep improving: the same settings get to 60% accuracy in 40 epochs.
-
 
 
 ## Line Detection
@@ -347,7 +341,6 @@ Because we only have about a thousand images to learn this task on, data augment
 We use Keras's `ImageDataGenerator`, and you can see the parameters for it in `text_recognizer/models/line_detector_model.py`. We can take a look at what the data transformations look like in the same notebook.
 
 
-
 ### Network description
 
 The network used in this model is `text_recognizer/networks/fcn.py`.
@@ -357,7 +350,6 @@ The basic idea is a deep convolutional network with resnet-style blocks (input t
 Unlike the original FCN, however, we do not maxpool or upsample, but instead rely on dilated convolutions to rapidly increase the effective receptive field. [Here](https://fomoro.com/projects/project/receptive-field-calculator) is a very calculator of the effective receptive field size of a convnet.
 
 The crucial thing to understand is that because we are labeling odd and even lines differently, each predicted pixel must have the context of the entire image to correctly label -- otherwise, there is no way to know whether the pixel is on an odd or even line.
-
 
 
 ### Review results
@@ -371,23 +363,19 @@ We also plot some sample training data augmentation in that notebook.
 #### Training result
 
 
-
 <div align="center">
   <img src="./assets/line-detector-train.png" width="80%">
   <p>IAM Lines datset.</p>
 </div><br>
 
 
-
 #### Testing result
-
 
 
 <div align="center">
   <img src="./assets/line-detector-pred.png" width="80%">
   <p>IAM Lines datset.</p>
 </div><br>
-
 
 
 ### Combining the two models
@@ -399,24 +387,10 @@ This is done in `text_recognizer/paragraph_text_recognizer.py`, which loads both
 We can see that it works as expected (albeit not too accurately yet) by running `pipenv run pytest -s text_recognizer/tests/test_paragraph_text_recognizer.py`.
 
 
-
 ## Data Labeling and Versioning
 
-### Data labeling
-
-We will be using a simple online data annotation web service called Dataturks.
-
-Please head to the [project page](https://dataturks.com/projects/sergeykarayev/fsdl_handwriting) and log in using our shared credential: `annotator@fullstackdeeplearning.com` (the password will be shared during lab).
-
-You should be able to start tagging now. Let's do it together for a little bit, and then you'll have time to do a full page by yourself.
-
-We'll sync up and review results in a few minutes.
-
-(Review results and discuss any differences in annotation and how they could be prevented.)
 
 ### Export data and update metadata file
-
-Let's now export the data from Dataturks and add it to our version control.
 
 You have noticed the `metadata.toml` files in all of our `data/raw` directories. They contain the remote source of the data, the filename it should have when downloaded, and a SHA-256 hash of the downloaded file.
 
@@ -440,8 +414,6 @@ We can confirm that we loaded the data correctly by looking at line crops and th
 
 Take a look at `notebooks/05-look-at-fsdl-handwriting.ipynb`.
 
-
-
 <div align="center">
   <img src="./assets/handwriting.png" width="80%">
 </div><br>
@@ -449,7 +421,6 @@ Take a look at `notebooks/05-look-at-fsdl-handwriting.ipynb`.
 ### Training on the new dataset
 
 We're not going to have time to train on the new dataset, but that is something that is now possible. As an exercise, you could write `FsdlHandwritingLinesDataset` and `FsdlHandwritingParagraphsDataset`, and be able to train a model on a combination of IAM and FSDL Handwriting data on both the line detection and line text prediction tasks.
-
 
 
 ## Web Deployment
@@ -479,7 +450,6 @@ We can also send a request specifying a URL to an image:
 curl "${API_URL}/v1/predict?image_url=http://s3-us-west-2.amazonaws.com/fsdl-public-assets/emnist_lines/or%2Bif%2Bused%2Bthe%2Bresults.png"
 ```
 
-You can shut down your flask server now.
 
 ### Adding web server tests
 
@@ -523,11 +493,8 @@ If needed, you can connect to your running docker container by running:
 docker exec -it api bash
 ```
 
-You can shut down your docker container now.
 
-
-
-## Future work
+## Different setttings to try
 
 - Change sliding window width/stride
 - Not using a sliding window: instead of sliding a LeNet over, you could just run the input through a few conv/pool layers, squeeze out the last (channel) dimension (which should be 0), and input the result into the LSTM. You can play around with the parameters there.
@@ -542,32 +509,9 @@ You can shut down your docker container now.
 - Try the U-Net architecture, that MaxPool's down and then UpSamples back up, with increased conv layer channel dimensions in the middle (https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/).
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-***
-
 ## References
 
 [1] Pieter Abbeel, Sergey Karayev, Josh Tobin. [*"Spring 2019 Full Stack Deep Learning Bootcamp"*](https://fullstackdeeplearning.com/march2019).  
-[2] Batuhan Balci, Dan Saadati, Dan Shiferaw. [*"Handwritten Text Recognition using Deep Learning"*](http://cs231n.stanford.edu/reports/2017/pdfs/810.pdf).
+[2] Alex Graves, Santiago Fernandez, Faustino Gomez, Jurgen Schmidhuber. [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf)  
+[3] Batuhan Balci, Dan Saadati, Dan Shiferaw. [*"Handwritten Text Recognition using Deep Learning"*](http://cs231n.stanford.edu/reports/2017/pdfs/810.pdf).  
+[4] 
