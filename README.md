@@ -513,5 +513,4 @@ docker exec -it api bash
 
 [1] Pieter Abbeel, Sergey Karayev, Josh Tobin. [*"Spring 2019 Full Stack Deep Learning Bootcamp"*](https://fullstackdeeplearning.com/march2019).  
 [2] Alex Graves, Santiago Fernandez, Faustino Gomez, Jurgen Schmidhuber. [Connectionist Temporal Classification: Labelling Unsegmented Sequence Data with Recurrent Neural Networks](https://www.cs.toronto.edu/~graves/icml_2006.pdf)  
-[3] Batuhan Balci, Dan Saadati, Dan Shiferaw. [*"Handwritten Text Recognition using Deep Learning"*](http://cs231n.stanford.edu/reports/2017/pdfs/810.pdf).  
-[4] 
+[3] Batuhan Balci, Dan Saadati, Dan Shiferaw. [*"Handwritten Text Recognition using Deep Learning"*](http://cs231n.stanford.edu/reports/2017/pdfs/810.pdf).
