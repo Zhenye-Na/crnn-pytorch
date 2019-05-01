@@ -22,6 +22,49 @@
   <p>High level architecture of the Full Stack Deep Learning project. Image Source: Pieter Abbeel, Sergey Karayev, Josh Tobin. <a href="https://fullstackdeeplearning.com/march2019">Spring 2019 Full Stack Deep Learning Bootcamp</a></p>
 </div><br>
 
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Text Recognizer Pro](#text-recognizer-pro)
+  - [Project structure](#project-structure)
+  - [Set up](#set-up)
+  - [Dataset](#dataset)
+    - [EMNIST dataset](#emnist-dataset)
+    - [EMNIST Lines dataset](#emnist-lines-dataset)
+    - [IAM Lines dataset](#iam-lines-dataset)
+  - [Usage](#usage)
+    - [EMNIST dataset](#emnist-dataset-1)
+      - [Networks and training code](#networks-and-training-code)
+      - [Train MLP and CNN](#train-mlp-and-cnn)
+      - [Testing](#testing)
+    - [EMNIST Lines dataset](#emnist-lines-dataset-1)
+      - [Train LSTM model with CTC loss](#train-lstm-model-with-ctc-loss)
+    - [IAM Lines Dataset](#iam-lines-dataset)
+      - [Training](#training)
+  - [Line Detection](#line-detection)
+    - [Training data augmentation](#training-data-augmentation)
+    - [Network description](#network-description)
+    - [Review results](#review-results)
+      - [Training result](#training-result)
+      - [Testing result](#testing-result)
+    - [Combining the two models](#combining-the-two-models)
+  - [Data Labeling and Versioning](#data-labeling-and-versioning)
+    - [Export data and update metadata file](#export-data-and-update-metadata-file)
+    - [Download images](#download-images)
+    - [Looking at the data](#looking-at-the-data)
+    - [Training on the new dataset](#training-on-the-new-dataset)
+  - [Web Deployment](#web-deployment)
+    - [Serving predictions from a web server](#serving-predictions-from-a-web-server)
+    - [Adding web server tests](#adding-web-server-tests)
+  - [Running web server in Docker](#running-web-server-in-docker)
+  - [Different setttings to try](#different-setttings-to-try)
+  - [References](#references)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 ## Project structure
 
 Web backend
